@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+asyncpg
+motor
+python-dotenv
+pydantic-settings
+python-multipart
+ollama
+langgraph
