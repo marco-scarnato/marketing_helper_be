@@ -6,6 +6,17 @@ from app.schemas.client import (
     ContactItem,
     LinkItem,
 )
+from app.schemas.brand_identity import (
+    AIBrandPromptRequest,
+    AIBrandPromptResponse,
+    BrandIdentityCreate,
+    BrandIdentityResponse,
+    BrandIdentityUpdate,
+    CustomerProfile,
+    LogoAsset,
+    ToneOfVoice,
+    VisualIdentity,
+)
 
 __all__ = [
     "ContactItem",
@@ -14,4 +25,13 @@ __all__ = [
     "ClientUpdate",
     "ClientResponse",
     "ClientListResponse",
+    "LogoAsset",
+    "ToneOfVoice",
+    "VisualIdentity",
+    "CustomerProfile",
+    "BrandIdentityCreate",
+    "BrandIdentityUpdate",
+    "BrandIdentityResponse",
+    "AIBrandPromptRequest",
+    "AIBrandPromptResponse",
 ]
