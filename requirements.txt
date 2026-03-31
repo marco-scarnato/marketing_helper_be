@@ -5,6 +5,7 @@ asyncpg
 motor
 python-dotenv
 pydantic-settings
+email-validator
 python-multipart
 ollama
 langgraph

@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     MONGO_URL: str
     MONGO_DB_NAME: str
     ANTHROPIC_API_KEY: str
+    UPLOAD_DIR: str = "./uploads"
 
     model_config = SettingsConfigDict(
         env_file=".env",
