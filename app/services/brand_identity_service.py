@@ -10,7 +10,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.models.brand_identity import BrandIdentity
+from app.schemas.agent import AgentInvokeRequest
 from app.schemas.brand_identity import AIBrandPromptResponse, BrandIdentityCreate, BrandIdentityUpdate
+from app.services.agent_service import AgentGatewayError, AgentService
 
 logger = logging.getLogger(__name__)
 
@@ -102,12 +104,21 @@ class BrandIdentityService:
 
     @staticmethod
     async def ai_generate_section(client_id: UUID, prompt: str, section: str) -> AIBrandPromptResponse:
-        logger.info(
-            "ai_generate_section stub called client_id=%s section=%s prompt=%s",
-            client_id,
-            section,
-            prompt,
-        )
+        logger.info("ai_generate_section called client_id=%s section=%s", client_id, section)
+
+        reasoning_text = "[MVP] Nessun reasoning disponibile"
+        try:
+            agent_response = await AgentService.invoke(
+                AgentInvokeRequest(
+                    client_id=str(client_id),
+                    objective=prompt,
+                    context={"section": section},
+                )
+            )
+            reasoning_text = agent_response.output
+        except AgentGatewayError:
+            logger.warning("Agent gateway non disponibile, uso fallback reasoning")
+
         proposed_map: dict[str, dict[str, object]] = {
             "core": {
                 "business_description": "Azienda specializzata in soluzioni digitali orientate alla crescita.",
@@ -133,5 +144,5 @@ class BrandIdentityService:
         return AIBrandPromptResponse(
             section=section,
             proposed=proposed_map.get(section, {}),
-            reasoning="[AI placeholder] Suggerimento generato con regole statiche. Integrazione LLM prevista.",
+            reasoning=reasoning_text,
         )

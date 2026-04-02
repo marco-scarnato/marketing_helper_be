@@ -17,6 +17,7 @@ from app.schemas.brand_identity import (
     ToneOfVoice,
     VisualIdentity,
 )
+from app.schemas.agent import AgentInvokeRequest, AgentInvokeResponse
 
 __all__ = [
     "ContactItem",
@@ -34,4 +35,6 @@ __all__ = [
     "BrandIdentityResponse",
     "AIBrandPromptRequest",
     "AIBrandPromptResponse",
+    "AgentInvokeRequest",
+    "AgentInvokeResponse",
 ]

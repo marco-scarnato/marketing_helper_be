@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     MONGO_DB_NAME: str
     ANTHROPIC_API_KEY: str
     UPLOAD_DIR: str = "./uploads"
+    AGENT_URL: str = "http://agent:8000"
+    AGENT_TIMEOUT_SECONDS: float = 40.0
 
     model_config = SettingsConfigDict(
         env_file=".env",
